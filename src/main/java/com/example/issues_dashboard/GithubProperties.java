@@ -12,7 +12,7 @@ public class GithubProperties {
     * Github API token ("user:sampletoken")
     * */
 
-//    @Pattern(regexp = "\\w+:\\w+")
+    @Pattern(regexp = "\\w+:\\w+")
     private String token;
 
     public String getToken() {
