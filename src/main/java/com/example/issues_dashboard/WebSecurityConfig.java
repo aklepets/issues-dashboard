@@ -1,4 +1,4 @@
-package io.spring.demo.issuesdashboard;
+package com.example.issues_dashboard;
 
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
