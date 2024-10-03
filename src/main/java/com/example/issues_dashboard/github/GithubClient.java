@@ -9,13 +9,14 @@ import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
-//import org.springframework.util.Base64Utils;
+import java.util.Arrays;
 import java.util.Base64;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @Component
 public class GithubClient {
@@ -34,6 +35,10 @@ public class GithubClient {
         return this.restTemplate.getForEntity(EVENT_ISSUES_URL, RepositoryEvent[].class, orgName, repoName);
     }
 
+    public List<RepositoryEvent> fetchEventsList(String orgName, String repoName){
+        return Arrays.asList(fetchEvents(orgName, repoName).getBody());
+    }
+
     private static class GithubAppTokenInterceptor implements ClientHttpRequestInterceptor {
 
         private final String token;
@@ -48,7 +53,6 @@ public class GithubClient {
             if (StringUtils.hasText(token)) {
                 byte[] basicAuthValue = this.token.getBytes(StandardCharsets.UTF_8);
                 httpRequest.getHeaders().set(HttpHeaders.AUTHORIZATION, "Basic " + Base64.getEncoder().encodeToString(basicAuthValue));
-//                httpRequest.getHeaders().set(HttpHeaders.AUTHORIZATION, "Basic " + Base64Utils.encodeToString(basicAuthValue));
             }
             return clientHttpRequestExecution.execute(httpRequest, bytes);
         }
