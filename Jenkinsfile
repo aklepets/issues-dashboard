@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                // Clean and build the project
+//         stage('Build') {
+//             steps {
+//                 // Clean and build the project
 //                 sh './mvnw clean package -DskipTests'
-            }
-        }
+//             }
+//         }
 
         stage('Build Docker Image') {
             steps {
