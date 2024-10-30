@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Run the Docker container in detached mode
-                    docker.image("myapp:latest").run("-p 8000:8000 --name myapp-container")
+                    docker.image("myapp:latest").run("--privileged -p 8000:8000 --name myapp-container")
                 }
             }
         }
