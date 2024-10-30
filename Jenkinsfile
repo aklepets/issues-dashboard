@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Clean and build the project
-                sh './mvnw clean package -DskipTests'
+//                 sh './mvnw clean package -DskipTests'
             }
         }
 
